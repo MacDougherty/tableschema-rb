@@ -22,6 +22,8 @@ module TableSchema
       def cast_default(value)
         latlng = value.split(',', 2)
         cast_array([latlng[0], latlng[1]])
+      rescue NoMethodError
+        raise TableSchema::InvalidGeoPointType.new("#{value} is not a valid geopoint")
       end
 
       def cast_object(value)
