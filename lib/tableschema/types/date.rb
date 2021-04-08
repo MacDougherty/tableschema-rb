@@ -46,7 +46,7 @@ module TableSchema
 
         begin
           return value.strftime(@format_string)
-        rescue ArgumentError
+        rescue ArgumentError, NoMethodError
           raise TableSchema::InvalidDateType.new("#{value} is not a valid date")
         end
       end
