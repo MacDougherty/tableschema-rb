@@ -54,7 +54,7 @@ module TableSchema
 
         begin
           return ::DateTime.strptime(value, @format_string)
-        rescue ArgumentError
+        rescue ArgumentError, TypeError
           raise TableSchema::InvalidDateTimeType.new("#{value} is not a valid date")
         end
       end
