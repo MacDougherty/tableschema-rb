@@ -45,7 +45,7 @@ module TableSchema
         return value if value.is_a?(type)
 
         begin
-          return ::Date.strptime(value, @format_string)
+          return value.strftime(@format_string)
         rescue ArgumentError
           raise TableSchema::InvalidDateType.new("#{value} is not a valid date")
         end

@@ -23,7 +23,7 @@ module TableSchema
         parsed_value = parse_value(value)
         JSON::Validator.validate!(geojson_schema, parsed_value)
         parsed_value
-      rescue JSON::Schema::ValidationError, JSON::ParserError
+      rescue JSON::Schema::ValidationError, JSON::ParserError, TypeError
         raise TableSchema::InvalidGeoJSONType.new("#{value} is not valid GeoJSON")
       end
 
@@ -31,7 +31,7 @@ module TableSchema
         parsed_value = parse_value(value)
         JSON::Validator.validate!(topojson_schema, parsed_value)
         parsed_value
-      rescue JSON::Schema::ValidationError, JSON::ParserError
+      rescue JSON::Schema::ValidationError, JSON::ParserError, TypeError
         raise TableSchema::InvalidTopoJSONType.new("#{value} is not valid TopoJSON")
       end
 
